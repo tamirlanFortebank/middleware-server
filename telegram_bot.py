@@ -5,7 +5,8 @@ import os
 import redis
 import hashlib
 import json
-
+# Перезапуск бота
+print("Перезапуск")
 # Загружаем переменные окружения
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY")
