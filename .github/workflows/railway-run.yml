@@ -1,0 +1,25 @@
+name: Запуск бота на Railway
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 */6 * * *' # Запускает бота каждые 6 часов
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Клонируем репозиторий
+      uses: actions/checkout@v3
+
+    - name: Устанавливаем Railway CLI
+      run: |
+        curl -fsSL https://railway.app/install.sh | sh
+        railway login --token ${{ secrets.RAILWAY_TOKEN }}
+
+    - name: Запускаем бота
+      run: |
+        railway run python telegram_bot.py
